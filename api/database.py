@@ -1,20 +1,14 @@
-# api_testes_sistema/database.py
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-# Substitua com suas credenciais MySQL se forem diferentes das padrões do XAMPP
-# Certifique-se de que o nome do banco de dados (banco_testes) corresponda ao que você criou no phpMyAdmin
-SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:@localhost/3306"
+DB_USER = "root"
+DB_PASSWORD = ""
+DB_HOST = "localhost"
+DB_NAME = "sistema_teste"
 
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+DATABASE_URL = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}"
+
+engine = create_engine(DATABASE_URL)
+SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 Base = declarative_base()
-
-# Dependência para obter a sessão do banco de dados
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
