@@ -1,11 +1,11 @@
 from sqlalchemy import Column, Integer, String, Text, Date, ForeignKey
-from database import Base
+from .database import Base
 
 class TesteSistema(Base):
-    __tablename__ = "teste_sistema"
+    __tablename__ = "testes_sistema"
 
     id_teste_sistema = Column(Integer, primary_key=True, index=True)
-    id_implementacao = Column(Integer, nullable=False)  # FK de outra API
+    id_implementacao = Column(Integer, nullable=False)  
     resultado = Column(String(20))
     detalhes_teste = Column(Text)
     data_teste = Column(Date)

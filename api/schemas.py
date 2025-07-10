@@ -1,10 +1,11 @@
 from pydantic import BaseModel
 from datetime import date
+from typing import Optional
 
 class TesteSistemaBase(BaseModel):
     id_implementacao: int
-    resultado: str
-    detalhes_teste: str
+    resultado: Optional[str]
+    detalhes_teste: Optional[str]
     data_teste: date
     responsavel_teste: str
     status: str
@@ -12,8 +13,11 @@ class TesteSistemaBase(BaseModel):
 class TesteSistemaCreate(TesteSistemaBase):
     pass
 
+class TesteSistemaUpdate(TesteSistemaBase):
+    pass
+
 class TesteSistemaOut(TesteSistemaBase):
     id_teste_sistema: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
